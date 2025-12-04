@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('sku')->unique();
             $table->decimal('price');
             $table->string('size');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->unique(['product_id', 'size']);
         });
