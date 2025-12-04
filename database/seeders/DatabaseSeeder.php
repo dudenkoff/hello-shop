@@ -10,11 +10,14 @@ class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    private const int PRODUCT_COUNT = 10;
+    private const PRODUCT_COUNT = 10;
 
     public function run(): void
     {
-        Product::factory()->count(self::PRODUCT_COUNT)->create();
+        Product::factory()
+            ->withAllSizes()
+            ->count(self::PRODUCT_COUNT)
+            ->create();
     }
 }
 

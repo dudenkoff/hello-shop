@@ -3,23 +3,36 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\Variant;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Support\Str;
 
 class ProductFactory extends Factory
 {
-    private const int NB_DIGITS = 3;
+    private const SIZES = ['2XS', 'XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'];
 
     protected $model = Product::class;
 
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'price' => $this->faker->randomNumber(self::NB_DIGITS),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'name' => $name = $this->faker->name(),
+            'slug' => Str::slug($name),
+            'description' => $this->faker->text(1000),
         ];
+    }
+
+    public function withAllSizes(): ProductFactory
+    {
+        return $this->has(
+            Variant::factory()
+                ->count(count(self::SIZES))
+                ->state(
+                    new Sequence(
+                        ...array_map(fn($s) => ['size' => $s], self::SIZES)
+                    )
+                )
+        );
     }
 }
