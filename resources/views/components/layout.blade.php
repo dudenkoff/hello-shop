@@ -8,8 +8,6 @@
 </head>
 <body>
 
-<x-cart :cart="$cart"/>
-
 <div class="bg-white">
     {{ $slot }}
 </div>
