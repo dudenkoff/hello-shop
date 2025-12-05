@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :cart="$cart">
     <div class="pt-6">
 
         <!-- Image gallery -->

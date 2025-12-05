@@ -19,4 +19,9 @@ class CartService
     {
         return Session::get('cart', []);
     }
+
+    public function getCount(): int
+    {
+        return count($this->getCart());
+    }
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<x-bag/>
+<x-cart :cart="$cart"/>
 
 <div class="bg-white">
     {{ $slot }}
