@@ -71,7 +71,8 @@
                             </svg>
                         </div>
                         <p class="sr-only">4 out of 5 stars</p>
-                        <a href="#" class="ml-3 text-sm font-medium text-gray-600 hover:text-red-500">117
+                        <a href="#"
+                           class="ml-3 text-sm font-medium text-gray-600 hover:text-red-500">{{ $product->reviews->count() }}
                             reviews</a>
                     </div>
                 </div>

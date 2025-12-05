@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         Product::factory()
             ->withAllSizes()
+            ->withReviews()
             ->count(self::PRODUCT_COUNT)
             ->create();
     }

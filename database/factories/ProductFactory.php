@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\Variant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -11,6 +12,7 @@ use Illuminate\Support\Str;
 class ProductFactory extends Factory
 {
     private const SIZES = ['2XS', 'XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'];
+    private const REVIEWS_COUNT = 2;
 
     protected $model = Product::class;
 
@@ -33,6 +35,13 @@ class ProductFactory extends Factory
                         ...array_map(fn($s) => ['size' => $s], self::SIZES)
                     )
                 )
+        );
+    }
+
+    public function withReviews(): ProductFactory
+    {
+        return $this->has(
+            Review::factory()->count(self::REVIEWS_COUNT)
         );
     }
 }
