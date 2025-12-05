@@ -77,7 +77,8 @@
                     </div>
                 </div>
 
-                <form class="mt-10">
+                <form class="mt-10" method="POST" action="{{ route('cart.store') }}">
+                    @csrf
 
                     <!-- Sizes -->
                     <div class="mt-10">
@@ -95,10 +96,17 @@
                         </fieldset>
                     </div>
 
-                    <button type="submit"
-                            class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 focus:ring-2 focus:ring-offset-red-700 focus:ring-offset-2 focus:outline-hidden">
-                        Add to bag
-                    </button>
+                    @if(session('addedToBag'))
+                        <button type="submit"
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700 focus:ring-2 focus:ring-offset-green-700 focus:ring-offset-2 focus:outline-hidden">
+                            {{ session('addedToBag') }}
+                        </button>
+                    @else
+                        <button type="submit"
+                                class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 focus:ring-2 focus:ring-offset-red-700 focus:ring-offset-2 focus:outline-hidden">
+                            Add to bag
+                        </button>
+                    @endif
                 </form>
             </div>
 
