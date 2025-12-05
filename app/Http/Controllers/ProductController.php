@@ -8,15 +8,15 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::withMin('variants', 'price')->get();
 
         return view('product.index', compact('products'));
     }
 
     public function show(Product $product)
     {
-        $variants = $product->variants;
+        $product->load('variants');
 
-        return view('product.show', compact('product', 'variants'));
+        return view('product.show', compact('product'));
     }
 }

@@ -10,11 +10,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function getPriceAttribute(): ?int
-    {
-        return $this->variants()->min('price');
-    }
-
     public function variants(): HasMany
     {
         return $this->hasMany(Variant::class);

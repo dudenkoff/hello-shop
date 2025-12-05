@@ -31,7 +31,7 @@
             <!-- Options -->
             <div class="mt-4 lg:row-span-3 lg:mt-0">
                 <h2 class="sr-only">Product information</h2>
-                <p class="text-3xl tracking-tight text-gray-900">$ {{ $product->price }}</p>
+                <p class="text-3xl tracking-tight text-gray-900">$ {{ $product->variants->min('price') }}</p>
 
                 <!-- Reviews -->
                 <div class="mt-6">
@@ -71,7 +71,7 @@
                             </svg>
                         </div>
                         <p class="sr-only">4 out of 5 stars</p>
-                        <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117
+                        <a href="#" class="ml-3 text-sm font-medium text-gray-600 hover:text-red-500">117
                             reviews</a>
                     </div>
                 </div>
@@ -82,12 +82,12 @@
                     <div class="mt-10">
                         <div class="flex items-center justify-between">
                             <h3 class="text-sm font-medium text-gray-900">Size</h3>
-                            <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Size guide</a>
+                            <a href="#" class="text-sm font-medium text-gray-600 hover:text-red-500">Size guide</a>
                         </div>
 
                         <fieldset aria-label="Choose a size" class="mt-4">
                             <div class="grid grid-cols-4 gap-3">
-                                @foreach($variants as $variant)
+                                @foreach($product->variants as $variant)
                                     <x-product.options :variant="$variant"/>
                                 @endforeach
                             </div>
@@ -95,7 +95,7 @@
                     </div>
 
                     <button type="submit"
-                            class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
+                            class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 focus:ring-2 focus:ring-offset-red-700 focus:ring-offset-2 focus:outline-hidden">
                         Add to bag
                     </button>
                 </form>
